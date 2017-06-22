@@ -4,9 +4,12 @@
 
   <head>
     <title>Test application</title>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.css" />
   </head>
  <body> 
    <h1 id="bigOne"></h1>
+   <h2 id="firebaseui-auth-container"></h2>
    
    Authentication happends here
    
@@ -43,7 +46,7 @@ function configureFirebaseLoginWidget() {
   };
 
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  ui.start('#firebaseui-auth-container', uiConfig);
+  ui.start('firebaseui-auth-container', uiConfig);
 }
     
 </script>
