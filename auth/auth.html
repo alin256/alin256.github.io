@@ -13,12 +13,19 @@
     messagingSenderId: "56851181447"
   };
   firebase.initializeApp(config);
+  
+  var bigOne = document.getElementById('bigOne');
+  var dbRef = firebase.database().ref().child('text');
+  dbRef.on('value', snap => bigOnr.innerText = snap.val());
+  
 </script>
 
   <head>
     <title>Test application</title>
   </head>
  <body> 
+   <h1 id="bigOne"></h1>
+   
    Authentication happends here
   </body>
 </html>
