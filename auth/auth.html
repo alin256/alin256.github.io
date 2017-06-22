@@ -26,8 +26,6 @@
   var bigOne = document.getElementById('bigOne');
   var dbRef = firebase.database().ref().child('text');
   dbRef.on('value', snap => bigOne.innerText = snap.val());
-  
-</script>
    // Firebase log-in widget
 function configureFirebaseLoginWidget() {
   var uiConfig = {
@@ -47,5 +45,8 @@ function configureFirebaseLoginWidget() {
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   ui.start('#firebaseui-auth-container', uiConfig);
 }
+    
+</script>
+
   </body>
 </html>
