@@ -1,4 +1,4 @@
-  (function(){
+(function(){
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAylm3TKzgulVjY-9c3OsE5dZ9xhbXJsAg",
@@ -35,6 +35,10 @@
     promice
       .then(user => console.log(user))
       .catch(e => console.log(e.message));    
+  });
+
+  btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
   });
 
   //Add auth listener
