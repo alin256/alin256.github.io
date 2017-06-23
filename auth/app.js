@@ -32,7 +32,9 @@
     const pwd = txtPassword.value;
     const auth = firebase.auth();
     const promice = auth.createUserWithEmailAndPassword(email, pwd);
-    promice.catch(e => console.log(e.message));    
+    promice
+      .then(user => console.log(user))
+      .catch(e => console.log(e.message));    
   });
 
   }());
