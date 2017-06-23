@@ -44,10 +44,12 @@
   //Add auth listener
   firebase.auth().onAuthStateChanged(fbUser => {
     if (fbUser){
+      const lastUser = fbUser.uid;
       console.log(fbUser);
       btnLogout.classList.remove('hide');
     }else{
       console.log('not logged in');
+      console.log('last user: ' + lastUser);
       btnLogout.classList.add('hide');
     }
   });
