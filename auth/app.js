@@ -26,4 +26,13 @@
     promice.catch(e => console.log(e.message));
   });
 
+  btnSignUp.addEventListener('click', e => {
+    const email = txtEmail.value;
+    //TODO validation of email
+    const pwd = txtPassword.value;
+    const auth = firebase.auth();
+    const promice = auth.createUserWithEmailAndPassword(email, pwd);
+    promice.catch(e => console.log(e.message));    
+  });
+
   }());
