@@ -37,4 +37,13 @@
       .catch(e => console.log(e.message));    
   });
 
+  //Add auth listener
+  firebase.auth().onAuthStateChanged(fbUser => {
+    if (fbUser){
+      console.log(fbUser);
+    }else{
+      console.log('not logged in');
+    }
+  });
+
   }());
