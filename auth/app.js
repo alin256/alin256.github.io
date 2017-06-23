@@ -44,6 +44,7 @@
 
 
   btnGoogle.addEventListener('click', e => {
+    var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
     firebase.auth().getRedirectResult().then(function(result) {
       if (result.credential) {
