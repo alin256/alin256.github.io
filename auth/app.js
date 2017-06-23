@@ -13,6 +13,9 @@
   firebase.initializeApp(config);
   
   //get elements
+  const labelEmail = document.getElementById('curEmail');
+  const labelName = document.getElementById('curName');
+
   const txtEmail = document.getElementById('txtEmail');
   const txtPassword = document.getElementById('txtPassword');
   const btnLogin = document.getElementById('btnLogin');
@@ -73,10 +76,15 @@
     if (fbUser){
       console.log(fbUser);
       lastUser = fbUser.uid;
+      curEmail.value = fbUser.email;
+      curName.value = fbUser.displayName;
       btnLogout.classList.remove('hide');
     }else{
       console.log('not logged in');
       console.log('last user' + lastUser);
+      curEmail.value = "";
+      curName.value = "";
+
       btnLogout.classList.add('hide');
     }
   });
