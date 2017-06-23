@@ -1,132 +1,55 @@
-
-<html>
-
-
-  <head>
-    <title>Test application</title>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.css" />
-  </head>
- <body> 
-   <h1 id="bigOne"></h1>
-   <h2 id="firebaseui-auth-container"></h2>
-
-    <div class="container">
-      <input id="txtEmail" type="email" placeholder="Email">
-
-      <input id="txtPassword" type="password" placeholder="Password">
-
-      <button id="btnLogin" class="btn btn-action">
-        Log in
-      </button>
-
-      <button id="btnSignUp" class="btn btn-secondary">
-        Sign up
-      </button>
-
-      <button id="btnLogout" class="btn btn-action hide">
-        Log out
-      </button>
-
-    </div>
-   
-   <script src="app.js"></script>
-   
-   Authentication happends here
+(function(){
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAylm3TKzgulVjY-9c3OsE5dZ9xhbXJsAg",
+    authDomain: "scheduler-base-1cc8c.firebaseapp.com",
+    databaseURL: "https://scheduler-base-1cc8c.firebaseio.com",
+    projectId: "scheduler-base-1cc8c",
+    storageBucket: "scheduler-base-1cc8c.appspot.com",
+    messagingSenderId: "56851181447"
+  };
+  firebase.initializeApp(config);
   
-    <div class="firebaseui-card-content">
-      <form onsubmit="return false;" lpformnum="1">
-        <ul class="firebaseui-idp-list">
-          <li class="firebaseui-list-item">
-            <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button" data-provider-id="google.com" data-upgraded=",MaterialButton">
-              <span class="firebaseui-idp-icon-wrapper">
-                <img class="firebaseui-idp-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
-              </span>
+  //get elements
+  const txtEmail = document.getElementById('txtEmail');
+  const txtPassword = document.getElementById('txtPassword');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnSignUp = document.getElementById('btnSignUp');
+  const btnLogout = document.getElementById('btnLogout');
+  
+  btnLogin.addEventListener('click', e => {
+    //get email and pwd
+    const email = txtEmail.value;
+    const pwd = txtPassword.value;
+    const auth = firebase.auth();
+    const promice = auth.signInWithEmailAndPassword(email, pwd);
+    promice.catch(e => console.log(e.message));
+  });
 
-              <span class="firebaseui-idp-text firebaseui-idp-text-long">
-                Sign in with Google
-              </span>
+  btnSignUp.addEventListener('click', e => {
+    const email = txtEmail.value;
+    //TODO validation of emails
+    const pwd = txtPassword.value;
+    const auth = firebase.auth();
+    const promice = auth.createUserWithEmailAndPassword(email, pwd);
+    promice
+      .then(user => console.log(user))
+      .catch(e => console.log(e.message));    
+  });
 
-              <span class="firebaseui-idp-text firebaseui-idp-text-short">
-                Google
-              </span>
-            </button>
-          </li>
-<!--
-          <li class="firebaseui-list-item">
-            <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-facebook firebaseui-id-idp-button" data-provider-id="facebook.com" data-upgraded=",MaterialButton">
-              <span class="firebaseui-idp-icon-wrapper">
-                <img class="firebaseui-idp-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/facebook.svg">
-              </span>
-              
-              <span class="firebaseui-idp-text firebaseui-idp-text-long">
-                Sign in with Facebook
-              </span>
+  btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
+  });
 
-              <span class="firebaseui-idp-text firebaseui-idp-text-short">
-                Facebook
-              </span>
-            </button>
-          </li>
+  //Add auth listener
+  firebase.auth().onAuthStateChanged(fbUser => {
+    if (fbUser){
+      console.log(fbUser);
+      btnLogout.classList.remove('hide');
+    }else{
+      console.log('not logged in');
+      btnLogout.classList.add('hide');
+    }
+  });
 
-          <li class="firebaseui-list-item">
-            <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-twitter firebaseui-id-idp-button" data-provider-id="twitter.com" data-upgraded=",MaterialButton">
-              <span class="firebaseui-idp-icon-wrapper">
-                <img class="firebaseui-idp-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/twitter.svg">
-              </span>
-              <span class="firebaseui-idp-text firebaseui-idp-text-long">
-                Sign in with Twitter
-              </span>
-              <span class="firebaseui-idp-text firebaseui-idp-text-short">
-                Twitter
-              </span>
-            </button>
-          </li>
-          <li class="firebaseui-list-item">
-            <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-github firebaseui-id-idp-button" data-provider-id="github.com" data-upgraded=",MaterialButton">
-              <span class="firebaseui-idp-icon-wrapper">
-                <img class="firebaseui-idp-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/github.svg">
-              </span>
-              <span class="firebaseui-idp-text firebaseui-idp-text-long">
-                Sign in with Github
-              </span>
-              <span class="firebaseui-idp-text firebaseui-idp-text-short">
-                Github
-              </span>
-            </button>
-          </li>
-          <li class="firebaseui-list-item">
-          <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-password firebaseui-id-idp-button" data-provider-id="password" data-upgraded=",MaterialButton">
-            <span class="firebaseui-idp-icon-wrapper">
-              <img class="firebaseui-idp-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/mail.svg">
-            </span>
-            <span class="firebaseui-idp-text firebaseui-idp-text-long">
-              Sign in with email
-            </span>
-            <span class="firebaseui-idp-text firebaseui-idp-text-short">
-              Email
-            </span>
-          </button>
-        </li>
-        <li class="firebaseui-list-item">
-          <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-phone firebaseui-id-idp-button" data-provider-id="phone" data-upgraded=",MaterialButton">
-            <span class="firebaseui-idp-icon-wrapper">
-              <img class="firebaseui-idp-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/phone.svg">
-            </span>
-            <span class="firebaseui-idp-text firebaseui-idp-text-long">
-              Sign in with phone
-            </span>
-            <span class="firebaseui-idp-text firebaseui-idp-text-short">
-              Phone
-            </span>
-          </button>
-        </li>
-        -->
-      </ul>
-    </form>
-  </div>
-
-  </body>
-</html>
+  }());
