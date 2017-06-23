@@ -28,7 +28,7 @@
 
   btnSignUp.addEventListener('click', e => {
     const email = txtEmail.value;
-    //TODO validation of email
+    //TODO validation of emails
     const pwd = txtPassword.value;
     const auth = firebase.auth();
     const promice = auth.createUserWithEmailAndPassword(email, pwd);
