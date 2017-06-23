@@ -34,44 +34,7 @@
    <script src="app.js"></script>
    
    Authentication happends here
-   
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAylm3TKzgulVjY-9c3OsE5dZ9xhbXJsAg",
-    authDomain: "scheduler-base-1cc8c.firebaseapp.com",
-    databaseURL: "https://scheduler-base-1cc8c.firebaseio.com",
-    projectId: "scheduler-base-1cc8c",
-    storageBucket: "scheduler-base-1cc8c.appspot.com",
-    messagingSenderId: "56851181447"
-  };
-  firebase.initializeApp(config);
-  
-  var bigOne = document.getElementById('bigOne');
-  var dbRef = firebase.database().ref().child('text');
-  dbRef.on('value', snap => bigOne.innerText = snap.val());
-   // Firebase log-in widget
-function configureFirebaseLoginWidget() {
-  var uiConfig = {
-    'signInSuccessUrl': '/',
-    'signInOptions': [
-      // Leave the lines as is for the providers you want to offer your users.
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
-    // Terms of service url
-    'tosUrl': '<your-tos-url>',
-  };
-
-  var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  ui.start('firebaseui-auth-container', uiConfig);
-}
-    
-</script>
-   
+     
 
   </body>
 </html>
