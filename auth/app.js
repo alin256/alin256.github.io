@@ -82,8 +82,8 @@
     }else{
       console.log('not logged in');
       console.log('last user' + lastUser);
-      curEmail.value = "";
-      curName.value = "";
+      curEmail.value = "nope";
+      curName.value = "nope";
 
       btnLogout.classList.add('hide');
     }
