@@ -1,5 +1,8 @@
 (function(){
   // Initialize Firebase
+  
+  var lastUser = null;
+  
   var config = {
     apiKey: "AIzaSyAylm3TKzgulVjY-9c3OsE5dZ9xhbXJsAg",
     authDomain: "scheduler-base-1cc8c.firebaseapp.com",
@@ -44,7 +47,7 @@
   //Add auth listener
   firebase.auth().onAuthStateChanged(fbUser => {
     if (fbUser){
-      const lastUser = fbUser.uid;
+      lastUser = fbUser.uid;
       console.log(fbUser);
       btnLogout.classList.remove('hide');
     }else{
