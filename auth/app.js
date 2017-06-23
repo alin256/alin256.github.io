@@ -17,7 +17,7 @@
   const btnSignUp = document.getElementById('btnSignUp');
   const btnLogout = document.getElementById('btnLogout');
   
-  btnLogin.addEventlistener('click', e => {
+  btnLogin.addEventListener('click', e => {
     //get email and pwd
     const email = txtEmail.value;
     const pwd = txtPassword.value;
