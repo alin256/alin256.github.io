@@ -76,14 +76,14 @@
     if (fbUser){
       console.log(fbUser);
       lastUser = fbUser.uid;
-      curEmail.value = fbUser.email;
-      curName.value = fbUser.displayName;
+      labelEmail.value = fbUser.email;
+      labelName.value = fbUser.displayName;
       btnLogout.classList.remove('hide');
     }else{
       console.log('not logged in');
       console.log('last user' + lastUser);
-      curEmail.value = "nope";
-      curName.value = "nope";
+      labelEmail.value = "nope";
+      labelName.value = "nope";
 
       btnLogout.classList.add('hide');
     }
