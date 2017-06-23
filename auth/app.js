@@ -55,16 +55,20 @@
       if (result.credential) {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
         var token = result.credential.accessToken;
+        console.log("githubToken" + token);
         // ...
       }
       // The signed-in user info.
       var user = result.user;
+      console.log("githubUser" + user);
       }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+      console.log(errorCode + " : "+ errorMessage);
       // The email of the user's account used.
       var email = error.email;
+      console.log("error email" + email);
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
