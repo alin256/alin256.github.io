@@ -10,5 +10,20 @@
   };
   firebase.initializeApp(config);
   
+  //get elements
+  const txtEmail = document.getElementById('txtEmail');
+  const txtPassword = document.getElementById('txtPassword');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnSignUp = document.getElementById('btnSignUp');
+  const btnLogout = document.getElementById('btnLogout');
   
+  btnLogin.addEventlistener('click', e => {
+    //get email and pwd
+    const email = txtEmail.value;
+    const pwd = txtPassword.value;
+    const auth = firebase.auth();
+    const promice = auth.signInWithEmailAndPassword(email, pwd);
+    promice.catch(e => console.log(e.message));
+  });
+
   }());
