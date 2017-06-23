@@ -45,8 +45,10 @@
   firebase.auth().onAuthStateChanged(fbUser => {
     if (fbUser){
       console.log(fbUser);
+      btnLogout.classList.remove('hide');
     }else{
       console.log('not logged in');
+      btnLogout.classList.add('hide');
     }
   });
 
