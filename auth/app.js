@@ -1,7 +1,8 @@
 (function(){
   // Initialize Firebase
   
-  var lastUser = null;
+  const auth = firebase.auth();
+  var lastUser = auth.currentUser;
   var config = {
     apiKey: "AIzaSyAylm3TKzgulVjY-9c3OsE5dZ9xhbXJsAg",
     authDomain: "scheduler-base-1cc8c.firebaseapp.com",
@@ -41,12 +42,13 @@
     const promice = auth.createUserWithEmailAndPassword(email, pwd);
     promice
       .then(user => console.log(user))
-      .catch(e => console.log(e.message));    
+      .catch(err => console.log(err.message));    
   });
 
   btnLogout.addEventListener('click', e => {
     firebase.auth().signOut();
   });
+
 
   btnGitHub.addEventListener('click', e => {
     var provider = new firebase.auth.GithubAuthProvider();
@@ -94,6 +96,9 @@
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
+
+      //TODO link account
+      // https://firebase.google.com/docs/auth/web/account-linking
       // ...
     });
   });
